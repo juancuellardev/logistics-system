@@ -1,73 +1,84 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+# Sistema de Logística Básico con Cálculo de Tarifas (NestJS)
+
+<p>
+<img src="https://simpleicons.org/icons/nestjs.svg" width="30" height="30"> <img src="https://simpleicons.org/icons/postgresql.svg" width="30" height="30"> <img src="https://simpleicons.org/icons/docker.svg" width="30" height="30">
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Descripción
 
-## Description
+Este proyecto es una prueba técnica para el puesto de Desarrollador Middle, donde se requiere el desarrollo de un componente básico para un sistema de logística que pueda calcular tarifas de envío basadas en la distancia. Este componente está implementado como un microservicio en NestJS.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Requisitos previos
+- Node.js (instalado globalmente)
+- Docker
+- docker-compose
 
-## Installation
+## Configuración inicial
+
+1. Clona este repositorio en tu máquina local:
+
+    ```bash
+    git clone https://github.com/juancuellardev/logistics-system.git
+    ```
+2. En la raíz del proyecto, instala las dependencias:
+
+    ```bash
+    cd tu_proyecto
+    ```
+
+3. Copia el archivo `.env.example` y renómbralo a `.env`:
+
+    ```bash
+    cp .env.example .env
+    ```
+4. Modifica el archivo .env con los valores adecuados para tu entorno.
+
+## Uso sin Docker
+
+1. En la raíz del proyecto, instala las dependencias:
+    ```bash
+    npm install
+    ```
+
+
+2. Ejecuta el siguiente comando para iniciar la aplicación:
+
+    ```bash
+    npm run start:dev
+    ```
+    Esto iniciará el servidor NestJS en modo de desarrollo.
+
+
+2. Accede a la aplicación desde un navegador web:
+    - Aplicación: [http://localhost:3000](http://localhost:3000)
+
+## Uso con Docker
+
+1. Asegúrate de tener Docker y docker-compose instalados en tu sistema.
+
+2. Ejecuta el siguiente comando en la raíz del proyecto para construir y ejecutar los contenedores Docker:
+
+    ```bash
+    docker-compose up --build
+    ```
+
+    Este comando iniciará los servicios definidos en `docker-compose.yaml` (como la base de datos, la aplicación y pgAdmin) y los ejecutará en contenedores Docker.
+
+3. Accede a la aplicación desde un navegador web:
+
+    - Aplicación: [http://localhost:3000](http://localhost:3000)
+    - pgAdmin: [http://localhost:5050](http://localhost:5050)
+
+## Personalización
+
+Si necesitas personalizar cualquier configuración, como puertos, variables de entorno u otras opciones de `docker-compose.yaml`, puedes hacerlo editando el archivo `docker-compose.yaml`.
+
+## Detener el servidor
+
+Para detener el servidor NestJS en ejecución (modo sin Docker), simplemente presiona `Ctrl + C` en la terminal donde se está ejecutando. 
+Para detener los contenedores Docker (modo con Docker), utiliza el siguiente comando:
 
 ```bash
-$ npm install
+docker-compose down
 ```
-
-## Running the app
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
