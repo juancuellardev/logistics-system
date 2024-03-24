@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
+import { EnviosModule } from './envios/envios.module';
 
 @Module({
-  imports: [],
+  imports: [EnviosModule],
   controllers: [],
   providers: [],
 })
