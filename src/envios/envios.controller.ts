@@ -8,7 +8,9 @@ export class EnviosController {
 
   @Post()
   create(@Body() createEnvioDto: CreateEnvioDto) {
-    return this.enviosService.create(createEnvioDto);
+    const tarifa = this.enviosService.calcularTarifa(createEnvioDto.distancia);
+    const envio = { ...createEnvioDto, tarifa };
+    return this.enviosService.create(envio);
   }
 
   @Get()
