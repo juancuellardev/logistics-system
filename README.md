@@ -1,10 +1,5 @@
 # Sistema de Logística Básico con Cálculo de Tarifas (NestJS)
 
-<p>
-<img src="https://simpleicons.org/icons/nestjs.svg" width="30" height="30"> <img src="https://simpleicons.org/icons/postgresql.svg" width="30" height="30"> <img src="https://simpleicons.org/icons/docker.svg" width="30" height="30">
-</p>
-
-
 ## Descripción
 
 Este proyecto es una prueba técnica para el puesto de Desarrollador Middle, donde se requiere el desarrollo de un componente básico para un sistema de logística que pueda calcular tarifas de envío basadas en la distancia. Este componente está implementado como un microservicio en NestJS.
@@ -13,6 +8,29 @@ Este proyecto es una prueba técnica para el puesto de Desarrollador Middle, don
 - Node.js (instalado globalmente)
 - Docker
 - docker-compose
+
+## Tecnologías Utilizadas
+
+<ul>
+  <li>
+    <div style="display: flex; align-items: center;">
+      <img src="https://simpleicons.org/icons/nestjs.svg" style="margin-right: 10px" width="30" height="30">
+      <strong>NestJS</strong>
+    </div>
+  </li>
+  <li>
+    <div style="display: flex; align-items: center;">
+      <img src="https://simpleicons.org/icons/postgresql.svg" style="margin-right: 10px" width="30" height="30"> 
+      <strong>PostgreSQL</strong>
+    </div>
+  </li>
+  <li>
+    <div style="display: flex; align-items: center;">
+      <img src="https://simpleicons.org/icons/docker.svg" style="margin-right: 10px" width="30" height="30">
+      <strong>Docker</strong>
+    </div>
+  </li>
+</ul>
 
 ## Configuración inicial
 
@@ -24,7 +42,7 @@ Este proyecto es una prueba técnica para el puesto de Desarrollador Middle, don
 2. En la raíz del proyecto, instala las dependencias:
 
     ```bash
-    cd tu_proyecto
+    cd logistics-system
     ```
 
 3. Copia el archivo `.env.example` y renómbralo a `.env`:
@@ -81,4 +99,69 @@ Para detener los contenedores Docker (modo con Docker), utiliza el siguiente com
 
 ```bash
 docker-compose down
+```
+
+## Endpoints
+
+### Registrar un nuevo envío
+
+- **URL**: `POST /envios`
+- **Descripción**: Registra un nuevo envío en el sistema, calculando automáticamente la tarifa basada en la distancia proporcionada.
+- **Body de la Solicitud**:
+  
+  ```json
+  {
+    "destinatario": "Nombre del destinatario",
+    "remitente": "Nombre del remitente",
+    "contenido": "Descripción del contenido",
+    "fecha_envio": "Fecha de envío en formato ISO8601",
+    "distancia": 100
+  }
+  ```
+  Donde:
+  - `destinatario`: El nombre del destinatario del envío.
+  - `remitente`: El nombre del remitente del envío.
+  - `contenido`: Descripción del contenido del envío.
+  - `fecha_envio`: La fecha de envío en formato ISO8601 (por ejemplo, "2024-03-23T12:00:00").
+  - `distancia`: La distancia del envío en kilómetros.
+  
+  Respuesta Exitosa:
+  ```json
+    {
+    "id_envio": 1,
+    "destinatario": "Nombre del destinatario",
+    "remitente": "Nombre del remitente",
+    "contenido": "Descripción del contenido",
+    "fecha_envio": "Fecha de envío en formato ISO8601",
+    "distancia": 100,
+    "tarifa": 55
+    }
+  ```
+
+### Listar todos los envíos registradosss
+
+
+- **URL**: `GET /envios`
+- **Descripción**: Devuelve una lista de todos los envíos registrados en el sistema.
+
+## Ejemplo de uso
+
+### Registrar un nuevo envío
+
+```bash
+curl -X POST \
+  http://localhost:3000/envios \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "destinatario": "John Doe",
+    "remitente": "Jane Doe",
+    "contenido": "Producto A",
+    "fecha_envio": "2024-03-23T12:00:00",
+    "distancia": 50
+  }'
+```
+### Listar todos los envíos
+
+```bash
+curl -X GET http://localhost:3000/envios
 ```
